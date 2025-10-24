@@ -1,0 +1,122 @@
+/* ====== Estilos generales ====== */
+body {
+  background: #f8f9fa;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* ====== Título principal ====== */
+h1 {
+  font-weight: bold;
+  color: #2c3e50;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ====== Menú de categorías ====== */
+#menu-categorias {
+  justify-content: center;
+}
+
+#menu-categorias .nav-link {
+  background: #ecf0f1;
+  color: #2c3e50;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+#menu-categorias .nav-link:hover {
+  background: #3498db;
+  color: white;
+  transform: scale(1.05);
+}
+
+#menu-categorias .nav-link.active {
+  background: #2980b9;
+  color: white;
+}
+
+/* ====== Tarjetas de productos ====== */
+#lista-productos .card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: white;
+}
+
+#lista-productos .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.15);
+}
+
+#lista-productos img {
+  height: 200px;
+  object-fit: cover;
+}
+
+#lista-productos .card-body {
+  text-align: center;
+}
+
+#lista-productos .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#lista-productos .card-text {
+  color: #7f8c8d;
+}
+
+#lista-productos .btn {
+  background: #3498db;
+  color: white;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+#lista-productos .btn:hover {
+  background: #2980b9;
+  transform: scale(1.05);
+}
+
+
+
+
+.marco-general {
+  background: #64e3e1;
+  border: 2px solid #4100f6; /* Marco */
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Sombra */
+  padding: 30px;
+  max-width: 1100px; /* Ancho máximo */
+  margin: 30px auto; /* Centrado */
+}
+
+
+
+/* diseño para el boton ir al adminostador */
+/* Botón administrativo */
+.btn-admin {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 12px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 30px; /* más separación del contenido anterior */
+  margin-bottom: 30px; /* separación de las categorías */
+}
+
+.btn-admin:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+  text-decoration: none;
+}
+

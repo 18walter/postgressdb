@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalle Producto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="stilo.css">
+</head>
+<body class="container py-5">
+
+  <a href="index.html" class="btn btn-outline-secondary mb-4">← Volver</a>
+
+  <div class="card p-4 shadow-lg">
+    <div class="row g-4">
+      <!-- Carrusel -->
+      <div class="col-md-6">
+        <div id="imagenes-producto" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner" id="carousel-items"></div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#imagenes-producto" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#imagenes-producto" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Info del producto -->
+      <div class="col-md-6 d-flex flex-column justify-content-center">
+        <h2 id="nombre-producto" class="fw-bold text-primary"></h2>
+        <p id="descripcion-producto" class="descripcion"></p>
+        <p id="precio-producto" class="precio fs-4 text-success"></p>
+        <button class="btn btn-primary btn-lg mt-3">🛒 Añadir al carrito</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cuadro detalles extra -->
+  <div class="detalles-extra mt-4 p-4 bg-light rounded shadow-sm">
+    <h4>Detalles adicionales</h4>
+    <p>✔ Producto 100% original</p>
+    <p>✔ Entrega rápida y segura</p>
+    <p>✔ Garantía de satisfacción</p>
+  </div>
+
+  <!-- Nueva sección: Descripción extendida -->
+<div class="card mt-4 p-4 shadow-sm">
+  <h4>Fanta Naranja: Bebida gaseosa refrescante con sabor a naranja, ideal para acompañar comidas o disfrutar en cualquier momento.</h4>
+  <p id="descripcion-extendida"></p>
+</div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/detalle.js"></script>
+
+</body>
+</html>

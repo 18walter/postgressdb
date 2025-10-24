@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login | Sistema</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+  <div class="card p-4 shadow-lg">
+
+    <!-- 🔙 Botón Volver a Tienda -->
+    <div class="mb-3">
+      <a href="index.html" class="btn btn-dark">🔙 Volver a la tienda</a>
+    </div>
+
+    <h3 class="text-center">🔑 Autenticación</h3>
+
+    <!-- Sección Inicio -->
+    <div id="inicioSection">
+      <div class="d-flex flex-column gap-3 my-4">
+        <button class="btn btn-outline-success btn-lg" onclick="mostrarFormulario('registroSection')">📝 Registrarse</button>
+        <button class="btn btn-outline-primary btn-lg" onclick="mostrarFormulario('loginSection')">🔐 Iniciar Sesión</button>
+        <button class="btn btn-outline-warning btn-lg" onclick="mostrarFormulario('resetSection')">🔁 Recuperar Contraseña</button>
+      </div>
+    </div>
+
+    <!-- Registro -->
+    <div id="registroSection" style="display:none;">
+      <h5>Registro</h5>
+      <input type="text" id="nombre" class="form-control mb-2" placeholder="Nombre" />
+      <input type="email" id="correo" class="form-control mb-2" placeholder="Correo" />
+      <input type="password" id="password" class="form-control mb-2" placeholder="Contraseña" />
+      <button onclick="registrar()" class="btn btn-success w-100">Registrarse</button>
+      <button onclick="mostrarFormulario('inicioSection')" class="btn btn-primary w-100 mt-3">⬅️ Volver a inicio</button>
+      <hr />
+    </div>
+
+    <!-- Login -->
+    <div id="loginSection" style="display:none;">
+      <h5>Iniciar sesión</h5>
+      <input type="email" id="loginCorreo" class="form-control mb-2" placeholder="Correo" />
+      <input type="password" id="loginPassword" class="form-control mb-2" placeholder="Contraseña" />
+      <button onclick="login()" class="btn btn-primary w-100">Iniciar Sesión</button>
+      <button onclick="mostrarFormulario('inicioSection')" class="btn btn-primary w-100 mt-3">⬅️ Volver a inicio</button>
+      <hr />
+    </div>
+
+    <!-- Reset -->
+    <div id="resetSection" style="display:none;">
+      <h5>Recuperar contraseña</h5>
+      <input type="email" id="resetCorreo" class="form-control mb-2" placeholder="Correo" />
+      <button onclick="resetPass()" class="btn btn-warning w-100">Restablecer</button>
+      <button onclick="mostrarFormulario('inicioSection')" class="btn btn-primary w-100 mt-3">⬅️ Volver a inicio</button>
+      <hr />
+    </div>
+
+    <!-- Código secreto -->
+    <div id="codigoSecretoSection" style="display:none;">
+      <h5>Código Secreto</h5>
+      <input type="password" id="codigoSecreto" class="form-control mb-2" placeholder="Ingrese el código secreto" />
+      <button onclick="verificarCodigo()" class="btn btn-dark w-100">Entrar al Panel</button>
+      <button onclick="mostrarFormulario('inicioSection')" class="btn btn-primary w-100 mt-3">⬅️ Volver a inicio</button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const API = "http://localhost:3000/api";
+const CODIGO_SECRETO = "ADMIN123";
+
+function mostrarFormulario(id) {
+  const secciones = ["inicioSection", "registroSection", "loginSection", "resetSection", "codigoSecretoSection"];
+  secciones.forEach(sec => {
+    document.getElementById(sec).style.display = sec === id ? "block" : "none";
+  });
+}
+
+mostrarFormulario("inicioSection");
+
+async function registrar() {
+  const nombre = document.getElementById("nombre").value.trim();
+  const correo = document.getElementById("correo").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if (!nombre || !correo || !password) {
+    alert("Por favor completa todos los campos para registrarte");
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API}/register`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ nombre, correo, password })
+    });
+    const data = await res.json();
+    alert(data.message || data.error);
+
+    if (res.ok) {
+      mostrarFormulario("loginSection");
+      document.getElementById("nombre").value = "";
+      document.getElementById("correo").value = "";
+      document.getElementById("password").value = "";
+    }
+  } catch (error) {
+    alert("Error en la conexión: " + error.message);
+  }
+}
+
+async function login() {
+  const correo = document.getElementById("loginCorreo").value.trim();
+  const password = document.getElementById("loginPassword").value.trim();
+
+  if (!correo || !password) {
+    alert("Por favor ingresa correo y contraseña");
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API}/login`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ correo, password })
+    });
+    const data = await res.json();
+
+    if (res.ok && data.usuario) {
+      alert("✅ Bienvenido, " + data.usuario.nombre);
+      mostrarFormulario("codigoSecretoSection");
+      document.getElementById("loginCorreo").value = "";
+      document.getElementById("loginPassword").value = "";
+    } else {
+      alert(data.error || "Error en inicio de sesión");
+    }
+  } catch (error) {
+    alert("Error en la conexión: " + error.message);
+  }
+}
+
+async function resetPass() {
+  const correo = document.getElementById("resetCorreo").value.trim();
+
+  if (!correo) {
+    alert("Ingresa un correo para restablecer la contraseña");
+    return;
+  }
+
+  try {
+    const res = await fetch(`${API}/reset`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ correo })
+    });
+    const data = await res.json();
+    alert(data.message || data.error);
+  } catch (error) {
+    alert("Error en la conexión: " + error.message);
+  }
+}
+
+function verificarCodigo() {
+  const codigoIngresado = document.getElementById("codigoSecreto").value.trim();
+
+  if (!codigoIngresado) {
+    alert("Por favor ingresa el código secreto");
+    return;
+  }
+
+  if (codigoIngresado === CODIGO_SECRETO) {
+    alert("✅ Acceso concedido");
+    window.location.href = "admin.html";
+  } else {
+    alert("❌ Código incorrecto");
+  }
+}
+</script>
+
+</body>
+</html>

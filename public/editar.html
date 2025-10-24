@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Editar Producto</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container py-4">
+  <h1 class="mb-4">✏️ Editar Producto</h1>
+
+  <form id="form-editar">
+    <!-- ID del producto (oculto, se pasa en la URL) -->
+    <input type="hidden" id="productoId" />
+
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input id="nombre" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Descripción</label>
+      <textarea id="descripcion" class="form-control" rows="3"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Precio</label>
+      <input id="precio" type="number" step="0.01" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Categoría (ID)</label>
+      <input id="categoria_id" type="number" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">URL Imagen</label>
+      <input id="imagen" class="form-control" />
+    </div>
+
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-primary">💾 Guardar cambios</button>
+      <!-- corregí la ruta de volver -->
+     <a href="index.html" class="btn btn-secondary">⬅ Volver</a>
+    </div>
+  </form>
+
+  <!-- corregí la ruta del js -->
+  <script src="editar.js"></script>
+</body>
+</html>

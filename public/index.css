@@ -1,0 +1,216 @@
+/* index.css */
+
+/* Estilos generales del body */
+body {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #f5f5f7;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 900px;
+}
+
+/* Encabezado */
+h1 {
+  color: #ffd369;
+  font-weight: 900;
+  text-shadow: 1px 1px 5px rgba(255, 211, 105, 0.7);
+}
+
+/* Botón cerrar sesión */
+#btn-logout {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+#btn-logout:hover {
+  background-color: #ff6b6b;
+  color: white;
+  box-shadow: 0 0 8px #ff6b6b;
+}
+
+/* Card principal */
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  color: #f5f5f7;
+}
+
+/* Títulos secundarios */
+h3 {
+  color: #ffd369;
+  text-shadow: 1px 1px 4px rgba(255, 211, 105, 0.8);
+}
+
+/* Labels de formularios */
+.form-label {
+  color: #ffd369;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+/* Inputs y selects */
+.form-control, .form-select {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid #ffd369;
+  color: #f5f5f7;
+  transition: all 0.3s ease;
+  border-radius: 0.4rem;
+}
+
+.form-control::placeholder {
+  color: #ffeaaa;
+  opacity: 0.8;
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: #ffcb05;
+  color: #fff;
+  box-shadow: 0 0 8px #ffd369;
+  outline: none;
+}
+
+/* Botones principales */
+.btn-success {
+  background: linear-gradient(45deg, #ffcb05, #ffd369);
+  border: none;
+  color: #2a2a2a;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(255, 203, 5, 0.7);
+  transition: all 0.3s ease;
+  border-radius: 0.5rem;
+}
+
+.btn-success:hover {
+  background: linear-gradient(45deg, #ffd369, #ffcb05);
+  color: #222;
+  box-shadow: 0 0 15px #ffdb4d;
+}
+
+/* Botón ver productos */
+#btn-ver-productos {
+  background: #ff6b6b;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.7);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+#btn-ver-productos:hover {
+  background: #ff4c4c;
+  box-shadow: 0 0 20px #ff4c4c;
+}
+
+/* Tabla */
+table {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+}
+
+thead.table-dark {
+  background: linear-gradient(45deg, #ffcb05, #ffd369);
+  color: #2a2a2a;
+  font-weight: 700;
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 203, 5, 0.25);
+  cursor: pointer;
+}
+
+/* Bordes redondeados en celdas */
+table th, table td {
+  border: none !important;
+}
+
+/* Scroll responsivo para tabla si es necesario */
+.table-responsive {
+  overflow-x: auto;
+}
+
+/* Sombra en inputs y selects deshabilitados */
+.form-control:disabled, .form-select:disabled {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ccc;
+  border-color: #aaa;
+  box-shadow: none;
+}
+
+/* Pequeños ajustes de spacing */
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+#categoriaExistente {
+  color: black;
+  background-color: white;
+}
+#categoriaExistente option {
+  color: black;
+  background-color: white;
+}
+#categoriaExistente {
+  margin-bottom: 0.75rem;
+}
+
+#categoriaNueva {
+  margin-top: 0.75rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.modal-gestion {
+  display: none; 
+  position: fixed; 
+  z-index: 1050; 
+  left: 0; 
+  top: 0; 
+  width: 100%; 
+  height: 100%; 
+  background: rgba(0,0,0,0.5); 
+  overflow-y: auto; /* permite scroll vertical si el contenido excede la altura */
+}
+
+.modal-contenido {
+  background: #fff;
+  margin: 5% auto;
+  max-width: 900px;
+  width: 90%;
+  max-height: 90vh; /* limita altura al 90% de la ventana */
+  padding: 20px;
+  border-radius: 12px;
+  overflow-y: auto; /* habilita scroll interno */
+}
