@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const API_URL =
   window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://localhost:3000/api"
-    : "https://sistemaweb-4mwj.onrender.com/api";// tu backend en Railway
+    : "https://waltersistemasweb.onrender.com/api";// tu backend en Railway
  // ajusta si usas otra URL
   const formProducto = document.getElementById("form-producto");
   const categoriaSelect = document.getElementById("categoriaExistente");

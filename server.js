@@ -21,10 +21,10 @@ console.log("✅ CORS configurado para permitir cualquier origen");
    🔹 Iniciar servidor
 ================================= */
 const PORT = process.env.PORT || 3000;
-const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? `https://sistemaweb-4mwj.onrender.com`
-    : `http://localhost:${PORT}`;
+
+  const baseUrl = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://localhost:3000/api"
+    : "https://waltersistemasweb.onrender.com/api"; // tu enlace en Render
 
 app.listen(PORT, () => {
   console.log(`✅ Servidor corriendo en puerto ${PORT}`);
@@ -36,23 +36,35 @@ app.get("/", (req, res) => {
    🔹 CRUD de Productos
 ================================= */
 
-// Obtener producto por ID (con JOIN a categorías)
+// Obtener productos (opcionalmente filtrados por categoría, con JOIN a categorías)
 app.get("/api/productos", async (req, res) => {
   const { categoria } = req.query;
+
   let sql = `
     SELECT p.id, p.nombre, p.descripcion, p.precio, p.imagen, p.categoria_id, c.nombre AS categoria
     FROM productos p
     JOIN categorias c ON p.categoria_id = c.id
   `;
   const params = [];
+
   if (categoria) {
     sql += " WHERE p.categoria_id = ?";
     params.push(categoria);
   }
-  const [rows] = await pool.query(sql, params);
-  res.json(rows);
-});
 
+  try {
+    const [rows] = await pool.query(sql, params);
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: "No se encontraron productos" });
+    }
+
+    res.json(rows);
+  } catch (error) {
+    console.error("Error en la consulta:", error.message); // Muestra el error real
+    res.status(500).json({ error: error.message });
+  }
+});
 
 // Listar productos (con filtro por categoría opcional + JOIN a categorías)
 app.get("/api/productos", async (req, res) => {
